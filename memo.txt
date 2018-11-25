@@ -1,0 +1,37 @@
+■設定
+docker-compose build
+docker-compose up -d
+docker-compose exec nuxt sh
+
+
+/trial vue init nuxt-community/starter-template front
+
+    ? Project name front
+    ? Project description Nuxt.js project
+    ? Author mitsudama
+
+    vue-cli · Generated "front".
+
+    To get started:
+    
+        cd front
+        npm install # Or yarn
+        npm run dev
+
+/trial # cd front
+/trial/front # yarn install
+    yarn install v1.10.1
+    info No lockfile found.
+    [1/4] Resolving packages...
+    warning eslint > file-entry-cache > flat-cache > circular-json@0.3.3: CircularJSON is in maintenance only, flatted is its successor.
+
+
+/trial/front # yarn dev
+
+-----------------------------------------------------------------
+<docker>
+■image 全削除
+docker images -aq | xargs docker rmi
+
+
+
