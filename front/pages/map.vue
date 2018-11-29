@@ -134,7 +134,7 @@ div {
   width: 100%;
   height: 100%;
 }
-
+ 
 .object-wall {
   background-image: url("../assets/img/wall.png");
   background-repeat: no-repeat;

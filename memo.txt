@@ -35,3 +35,7 @@ docker images -aq | xargs docker rmi
 
 
 
+--------------------------------------------
+■ git 
+git config --local user.name [name]
+git config --local user.email [email]
