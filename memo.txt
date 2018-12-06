@@ -28,6 +28,32 @@ docker-compose exec nuxt sh
 
 /trial/front # yarn dev
 
+
+
+
+
+--------------------------------------------
+■bootstrap 導入yarn add bootstrap-vue
+# With NPM:
+npm i bootstrap-vue
+
+# With Yarn:
+yarn add bootstrap-vue
+Add bootstrap-vue/nuxt to modules section of nuxt.config.js
+
+{
+  modules: [
+    'bootstrap-vue/nuxt',
+
+    // Or if you have custom bootstrap CSS...
+    ['bootstrap-vue/nuxt', { css: false }],
+  ]
+}
+
+
+
+
+
 -----------------------------------------------------------------
 <docker>
 ■image 全削除
@@ -39,3 +65,12 @@ docker images -aq | xargs docker rmi
 ■ git 
 git config --local user.name [name]
 git config --local user.email [email]
+
+
+
+
+
+
+--------------------------------------------
+<todo>
+・10番目以降の表示崩れ
