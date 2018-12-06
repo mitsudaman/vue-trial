@@ -51,6 +51,12 @@ Add bootstrap-vue/nuxt to modules section of nuxt.config.js
 }
 
 
+-----------------------------------------------------------------
+◾label 用プラグイン
+https://github.com/emn178/chartjs-plugin-labels
+
+※このcodeのsettingを参考に
+https://codepen.io/kasiditp/pen/jwBqBZ
 
 
 

@@ -76,6 +76,7 @@
 <script>
 // import LineChart from './LineChart.js'
 import PieChart from "./PieChart.js";
+import 'chartjs-plugin-labels';
 
 export default {
   components: {
@@ -91,8 +92,16 @@ export default {
           fontSize: 35,
           text: "タイムスケジュール"
         },
-        pieceLabel: {
-          render: "value",
+        plugins: {
+          labels: [
+            {
+              render: 'value',
+              position: 'outside'
+            },
+            {
+              render: 'label'
+            }
+          ]
         },
       },
       datas: [],
