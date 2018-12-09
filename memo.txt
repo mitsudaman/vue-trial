@@ -82,8 +82,31 @@ https://qiita.com/sea_mountain/items/d70216a5bc16a88ed932
 git filter-branch -f --env-filter "GIT_AUTHOR_NAME=''; GIT_AUTHOR_EMAIL=''; GIT_COMMITTER_NAME=''; GIT_COMMITTER_EMAIL='';" HEAD 
 
 
+
+
+--------------------------------------------
+▼GitHub Pages へデプロイするには？
+https://ja.nuxtjs.org/faq/github-pages/
+
+/* package.json */
+
+  "scripts": {
+    "build": "nuxt build",
+    "generate": "nuxt generate",
+  },
+
+
+"scripts": {
+  "build:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt build",
+  "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate"
+},
+
+
+
 --------------------------------------------
 <todo>
 ・10番目以降の表示崩れ
 ・不具合修正
 ・
+
+

@@ -1,3 +1,9 @@
+const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+  router: {
+    base: '/vue-torial/'
+  }
+} : {}
+
 module.exports = {
   /*
   ** Headers of the page
@@ -40,6 +46,7 @@ module.exports = {
 
     // Or if you have custom bootstrap CSS...
     ['bootstrap-vue/nuxt', { css: false }],
-  ]
+  ],
+  ...routerBase
 }
 
