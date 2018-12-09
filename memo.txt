@@ -52,6 +52,9 @@ Add bootstrap-vue/nuxt to modules section of nuxt.config.js
 
 
 -----------------------------------------------------------------
+■vue-chart.js (Getting Started)
+https://vue-chartjs.org/guide/#introduction
+
 ◾label 用プラグイン
 https://github.com/emn178/chartjs-plugin-labels
 
@@ -82,3 +85,5 @@ git filter-branch -f --env-filter "GIT_AUTHOR_NAME=''; GIT_AUTHOR_EMAIL=''; GIT_
 --------------------------------------------
 <todo>
 ・10番目以降の表示崩れ
+・不具合修正
+・

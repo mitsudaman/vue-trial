@@ -1,74 +1,62 @@
 <template>
   <div>
     <b-container class="mt-5">
-      <b-card 
-        img-top
-        class="mb-2">
-      <b-row>
-        <b-col cols="7">
-          <div class="">
-            <!-- <line-chart :chart-data="datacollection"></line-chart> -->
-            <pie-chart 
-            :chart-data="datacollection"
-            :options="chartOptions"></pie-chart>{{chartOptions}}
-          </div>
-        </b-col>
-        <b-col cols="5">
-          <b-row>
-            <b-col cols="1">
-            </b-col>
-            <b-col cols="3">
-              <label>From</label>
-            </b-col>
-            <b-col cols="3">
-              <label>To</label>
-            </b-col>
-            <b-col cols="5">
-              <label>スケジュール</label>
-            </b-col>
-          </b-row>
-          <b-row
-          v-for="(schedule,index) in schedules"
-          v-bind:key="schedule.id">
-            <b-col cols="1" class="h2">
-              {{index + 1}}
-            </b-col>
-            <b-col cols="3">
-              <p class="form-control">{{schedule.fromTime}}</p>
-            </b-col>
-            <b-col cols="3">
-              <b-form-select 
-                v-model="schedule.toTime" 
-                :options="timeOptions()" 
-                class="mb-3"
-                @input="selectToTime()">
-              </b-form-select>
-            </b-col>
-            <b-col cols="5">
-              <b-form-input v-model="schedule.plan"></b-form-input>
-            </b-col>
-          </b-row>
-          <b-row>
-            <b-col cols="9">
-            </b-col>
-            <b-col cols="3">
-              <b-button  
-                class="btn-block" 
-                variant="primary"
-                @click="addSchedule()">追加</b-button>
-            </b-col>
-          </b-row>
-        </b-col>
-      </b-row>
-      <b-row>
-        <b-col cols="10"></b-col>
-        <b-col cols="2">
-          <b-button 
-            variant="primary"
-            class="btn-block mt-3"
-            @click="fillData()">Set</b-button ></b-col>
-      </b-row>
-    </b-card>
+      <div class="card p-1">
+        <b-row>
+          <b-col lg="7">
+            <div>
+              <!-- <line-chart :chart-data="datacollection"></line-chart> -->
+              <pie-chart :chart-data="datacollection" :options="chartOptions"></pie-chart>
+            </div>
+          </b-col>
+          <b-col lg="5">
+            <b-row class="mt-5">
+              <b-col cols="1"></b-col>
+              <b-col cols="3">
+                <label>From</label>
+              </b-col>
+              <b-col cols="3">
+                <label>To</label>
+              </b-col>
+              <b-col cols="5">
+                <label>スケジュール</label>
+              </b-col>
+            </b-row>
+            <b-row v-for="(schedule,index) in schedules" v-bind:key="schedule.id">
+              <b-col cols="1" class="h2">{{index + 1}}</b-col>
+              <b-col cols="3">
+                <p class="form-control">{{schedule.fromTime}}</p>
+              </b-col>
+              <b-col cols="3">
+                <b-form-select
+                  v-model="schedule.toTime"
+                  :options="timeOptions()"
+                  class="mb-3"
+                  @input="selectToTime()"
+                ></b-form-select>
+              </b-col>
+              <b-col cols="5">
+                <b-form-input v-model="schedule.plan"></b-form-input>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col cols="9"></b-col>
+              <b-col cols="3">
+                <b-button class="btn-block" variant="primary" @click="addSchedule()">追加</b-button>
+              </b-col>
+            </b-row>
+          </b-col>
+        </b-row>
+        <b-row class="mt-4">
+          <b-col lg="8" col="12"></b-col>
+          <b-col lg="2" col="6">
+            <b-button variant="primary" class="btn-block mt-3" @click="SetSample()">test</b-button>
+          </b-col>
+          <b-col lg="2" col="6">
+            <b-button variant="primary" class="btn-block mt-3" @click="fillData()">Set</b-button>
+          </b-col>
+        </b-row>
+      </div>
     </b-container>
   </div>
 </template>
@@ -76,7 +64,7 @@
 <script>
 // import LineChart from './LineChart.js'
 import PieChart from "./PieChart.js";
-import 'chartjs-plugin-labels';
+import "chartjs-plugin-labels";
 
 export default {
   components: {
@@ -95,14 +83,37 @@ export default {
         plugins: {
           labels: [
             {
-              render: 'value',
-              position: 'outside'
+              render: function(args) {
+                console.log(args);
+                var time;
+                if (args.index == 0) {
+                  time = "0 ~ " + args.value;
+                } else {
+                  var from = 0;
+                  var to = 0;
+                  for (var i = 0; i < args.index; i++) {
+                    if (i != args.dataset.data.length - 1) {
+                      from += args.dataset.data[i];
+                      to = from + args.value;
+                    }
+                  }
+                  time = from + "~" + to;
+                }
+                return time;
+              },
+              fontSize: 14,
+              fontStyle: "bold",
+              fontColor: "#000",
+              position: "outside"
             },
             {
-              render: 'label'
+              render: "label",
+              fontSize: 14,
+              fontStyle: "bold",
+              fontColor: "#000"
             }
           ]
-        },
+        }
       },
       datas: [],
       baseColors: [
@@ -125,7 +136,7 @@ export default {
       ],
       timeOptions: () => {
         var times = [];
-        for (var i = 0; i <= 24; i++) {
+        for (var i = 0; i <= 24; i += 0.5) {
           times.push({ value: i, text: i });
         }
         return times;
@@ -158,7 +169,6 @@ export default {
 
         var addColor = this.baseColors[i % this.baseColors.length].color;
         this.graphColors.push(addColor);
-        // var addLabel = this.baseColors[(i)%this.baseColors.length].label
         var addLabel = this.schedules[i].plan;
         this.labels.push(addLabel);
       }
@@ -195,6 +205,46 @@ export default {
         toTime: fromTime + 1,
         plan: ""
       });
+    },
+    SetSample() {
+      this.schedules = [
+        {
+          fromTime: 0,
+          toTime: 7,
+          plan: "寝る"
+        },
+        {
+          fromTime: 7,
+          toTime: 8,
+          plan: "準備＆通勤"
+        },
+        {
+          fromTime: 8,
+          toTime: 17,
+          plan: "仕事"
+        },
+        {
+          fromTime: 17,
+          toTime: 18,
+          plan: "退勤"
+        },
+        {
+          fromTime: 18,
+          toTime: 20,
+          plan: "夜ご飯＆風呂"
+        },
+        {
+          fromTime: 20,
+          toTime: 22,
+          plan: "副業"
+        },
+        {
+          fromTime: 22,
+          toTime: 24,
+          plan: "自由"
+        }
+      ];
+      this.schedules.push();
     }
   }
 };
