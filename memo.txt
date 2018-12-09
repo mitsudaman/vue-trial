@@ -101,7 +101,7 @@ https://ja.nuxtjs.org/faq/github-pages/
   "generate:gh-pages": "DEPLOY_ENV=GH_PAGES nuxt generate"
 },
 
-
+https://mitsudaman.github.io/vue-trial/ 
 
 --------------------------------------------
 <todo>
