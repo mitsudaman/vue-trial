@@ -6,7 +6,7 @@
 
 module.exports = {
   router: {
-    base: '/dist/'
+    base: '/vue-trial/'
   },
   /*
   ** Headers of the page
