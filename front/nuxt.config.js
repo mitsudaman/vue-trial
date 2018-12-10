@@ -1,10 +1,13 @@
-const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
-  router: {
-    base: '/dist/'
-  }
-} : {}
+// const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
+//   router: {
+//     base: '/dist/'
+//   }
+// } : {}
 
 module.exports = {
+  router: {
+    base: '/dist/'
+  },
   /*
   ** Headers of the page
   */
@@ -47,6 +50,6 @@ module.exports = {
     // Or if you have custom bootstrap CSS...
     ['bootstrap-vue/nuxt', { css: false }],
   ],
-  ...routerBase
+  // ...routerBase
 }
 
