@@ -1,6 +1,6 @@
 const routerBase = process.env.DEPLOY_ENV === 'GH_PAGES' ? {
   router: {
-    base: '/vue-trial/front/dist/'
+    base: '/dist/'
   }
 } : {}
 
