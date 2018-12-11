@@ -5,6 +5,7 @@
 // } : {}
 
 module.exports = {
+  mode: 'spa',
   router: {
     base: '/vue-trial/'
   },

@@ -7,5 +7,8 @@ npm-debug.log
 # Nuxt build
 .nuxt
 
+# Editor directories and files
+.DS_Store
+
 # Nuxt generate
 # dist
