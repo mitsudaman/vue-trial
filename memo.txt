@@ -141,6 +141,10 @@ https://fiahfy.blogspot.com/2017/12/nuxtjs-github-pages.html
 git remote set-url origin https://github.com/mitsudaman/vue-trial.git
 git remote add origin https://github.com/mitsudaman/vue-trial.git
 
+＊もっといいの発見!!!
+git subtree push --prefix front/dist/ origin gh-pages
+
+
 --------------------------------------------
 <todo>
 ・10番目以降の表示崩れ
