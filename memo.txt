@@ -125,13 +125,25 @@ https://mitsudaman.github.io/vue-trial/
 「プロジェクトリポジトリであれば gh-pages ブランチ、ユーザーや組織のサイトであれば master ブランチにデプロイしてください 。」
 ってdistフォルダだけアップすればいい感じ？
 
-(4)
+(4)dist 配下のみアップされたブランチを作成
 
+▼Nuxt.js を GitHub Pages で使う
+https://fiahfy.blogspot.com/2017/12/nuxtjs-github-pages.html
+
+  $ cd gh-pages
+  $ git init ←これも必要
+  $ git remote add origin https://github.com/mitsudaman/vue-trial.git
+  $ git checkout -b gh-pages
+  $ git add .
+  $ git commit -m "Initial commit"
+  $ git push -u origin gh-pages
+
+git remote set-url origin https://github.com/mitsudaman/vue-trial.git
+git remote add origin https://github.com/mitsudaman/vue-trial.git
 
 --------------------------------------------
 <todo>
 ・10番目以降の表示崩れ
 ・不具合修正
 ・
-
 
