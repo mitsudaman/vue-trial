@@ -103,6 +103,31 @@ https://ja.nuxtjs.org/faq/github-pages/
 
 https://mitsudaman.github.io/vue-trial/ 
 
+
+
+(1)上を参考にdistファイルをgenerateする
+
+
+(2)dockerfileなどが入っている大元のリポジトリ<vue-trial>をアップしてみる
+→githubpages も Netlfyも動作せず
+　
+  <Netlify>
+  1.ブランチをデプロイする： master もしくはデプロイしたいブランチ
+  2.ビルドコマンド： npm run generate
+  3.公開ディテクトリ： dist
+  ↑これしてもダメ
+
+(3)vue-trial配下のfrontディレクトリをアップしてみる
+→git hub pages は動作しない　が！
+　Netlifyは無事動くことに成功！！！
+
+もしや
+「プロジェクトリポジトリであれば gh-pages ブランチ、ユーザーや組織のサイトであれば master ブランチにデプロイしてください 。」
+ってdistフォルダだけアップすればいい感じ？
+
+(4)
+
+
 --------------------------------------------
 <todo>
 ・10番目以降の表示崩れ
