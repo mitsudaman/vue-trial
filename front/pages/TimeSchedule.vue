@@ -5,8 +5,13 @@
         <b-row>
           <b-col lg="7">
             <div>
-              <!-- <line-chart :chart-data="datacollection"></line-chart> -->
-              <pie-chart :chart-data="datacollection" :options="chartOptions"></pie-chart>
+              <pie-chart 
+                :chart-data="datacollection" 
+                :options="chartOptions">
+              </pie-chart>
+              <b-button 
+              id="download"
+              @click="onDownload()">download</b-button>
             </div>
           </b-col>
           <b-col lg="5">
@@ -42,17 +47,17 @@
             <b-row>
               <b-col cols="9"></b-col>
               <b-col cols="3">
-                <b-button class="btn-block" variant="primary" @click="addSchedule()">追加</b-button>
+                <b-button class="btn-block" variant="primary" @click="onAddSchedule()">追加</b-button>
               </b-col>
             </b-row>
           </b-col>
         </b-row>
         <b-row class="mt-4">
-          <b-col lg="8" col="12"></b-col>
-          <b-col lg="2" col="6">
+          <b-col lg="8" cols="12"></b-col>
+          <b-col lg="2" cols="6">
             <b-button variant="primary" class="btn-block mt-3" @click="SetSample()">test</b-button>
           </b-col>
-          <b-col lg="2" col="6">
+          <b-col lg="2" cols="6">
             <b-button variant="primary" class="btn-block mt-3" @click="fillData()">Set</b-button>
           </b-col>
         </b-row>
@@ -62,13 +67,11 @@
 </template>
 
 <script>
-// import LineChart from './LineChart.js'
 import PieChart from "./PieChart.js";
 import "chartjs-plugin-labels";
 
 export default {
   components: {
-    // LineChart
     PieChart
   },
   data() {
@@ -84,11 +87,10 @@ export default {
           labels: [
             {
               render: function(args) {
-                console.log(args);
                 var time;
                 if (args.index == 0) {
                   time = "0 ~ " + args.value;
-                } else {
+                }else {
                   var from = 0;
                   var to = 0;
                   for (var i = 0; i < args.index; i++) {
@@ -148,7 +150,7 @@ export default {
   },
   methods: {
     fillData() {
-      this.setPieChart();
+      this.setChartParam();
       this.datacollection = {
         datasets: [
           {
@@ -159,14 +161,13 @@ export default {
         labels: this.labels
       };
     },
-    setPieChart() {
+    setChartParam() {
       this.datas = [];
       this.graphColors = [];
       this.labels = [];
       //スケジュール分 時刻・カラー・ラベルを設定する
       for (var i = 0; i < this.schedules.length; i++) {
         this.datas.push(this.schedules[i].toTime - this.schedules[i].fromTime);
-
         var addColor = this.baseColors[i % this.baseColors.length].color;
         this.graphColors.push(addColor);
         var addLabel = this.schedules[i].plan;
@@ -182,12 +183,6 @@ export default {
         this.labels.push("その他");
       }
     },
-    getBackGroundColors() {
-      colors = [];
-      for (var i = 0; i < this.data.count; i++) {
-        colors.push(this.colors[i]);
-      }
-    },
     selectToTime() {
       this.toTimeEqualizeNextFromTime();
     },
@@ -198,7 +193,7 @@ export default {
         }
       }
     },
-    addSchedule() {
+    onAddSchedule() {
       var fromTime = this.schedules.slice(-1)[0].toTime;
       this.schedules.push({
         fromTime: fromTime,
@@ -245,6 +240,13 @@ export default {
         }
       ];
       this.schedules.push();
+    },
+    onDownload() {
+      let canvas = document.getElementById("pie-chart");
+      let link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = "time_schedule.png";
+      link.click();
     }
   }
 };

@@ -144,6 +144,17 @@ git remote add origin https://github.com/mitsudaman/vue-trial.git
 ＊もっといいの発見!!!
 git subtree push --prefix front/dist/ origin gh-pages
 
+(5)netlifyでも大元のリポジトリをあげるだけにしたい(サブディレクトリをデプロイしたい)
+
+▼monorepo 構成の Git repository の sub directory を Netlify にデプロイする
+https://ohbarye.hatenablog.jp/entry/2018/07/08/161018
+
+<netlify.toml>
+  [build]
+    base    = "front"
+    publish = "front/dist"
+    command = "npm run generate"
+
 
 --------------------------------------------
 <todo>
