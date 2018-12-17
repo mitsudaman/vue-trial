@@ -161,9 +161,16 @@ https://ohbarye.hatenablog.jp/entry/2018/07/08/161018
 * 画像ダウンロード機能
 * カラー設定機能
 * カラー色彩調整
- 素人でもプロ並みの配色ができるデザインパターン参考サイト21選
+ ▼素人でもプロ並みの配色ができるデザインパターン参考サイト21選
  https://blog.codecamp.jp/color_pattern
+
+ ▼American　Palette
+ https://flatuicolors.com/palette/us
+ 
 * 削除ボタン
+▼ボタンに使うべき色とは？CTAと配色の関係について、ポイントを解説！
+https://www.seleqt.net/design/how-button-color-contrast-guides-users-to-action/
+
 * チェック処理(9以上は崩れるのでNG、toをfromが越えるとダメとか)
 →NOを表示しない方向で対応
 

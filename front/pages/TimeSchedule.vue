@@ -142,7 +142,7 @@ export default {
       //   "rgb(153, 102, 255)" ,
       //   "rgb(201, 203, 207)"
       // ],
-      //https://flatuicolors.com/palette/us
+      //Amerivan PaletteAmerivan Palette
       baseColors: [
         "#ff7675",
         "#fd79a8" ,
