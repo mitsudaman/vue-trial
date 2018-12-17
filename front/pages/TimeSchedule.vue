@@ -5,17 +5,17 @@
         <b-row>
           <b-col lg="7">
             <div>
-              <pie-chart 
+              <!-- <pie-chart 
                 :chart-data="datacollection" 
                 :options="chartOptions">
-              </pie-chart>
+              </pie-chart> -->
               <b-button 
               id="download"
               @click="onDownload()">download</b-button>
             </div>
           </b-col>
           <b-col lg="5">
-            <b-row class="mt-5">
+            <b-row class="mt-5 no-gutters">
               <b-col cols="1"></b-col>
               <b-col cols="3">
                 <label>From</label>
@@ -27,9 +27,17 @@
                 <label>スケジュール</label>
               </b-col>
             </b-row>
-            <b-row v-for="(schedule,index) in schedules" v-bind:key="schedule.id">
-              <b-col cols="1" class="h2">{{index + 1}}</b-col>
-              <b-col cols="3">
+            <b-row 
+            v-for="(schedule,index) in schedules" 
+            v-bind:key="schedule.id"
+            class="no-gutters">
+              <b-col cols="1" >
+                <b-button 
+                v-bind:style="{ backgroundColor: baseColors[schedule.colorNo] }"
+                id="colorBox"
+                @click="onChangeColor(index)" ></b-button>
+              </b-col>
+              <b-col cols="3" class="">
                 <p class="form-control">{{schedule.fromTime}}</p>
               </b-col>
               <b-col cols="3">
@@ -76,6 +84,7 @@ export default {
   },
   data() {
     return {
+      activeColor: 'black',
       datacollection: null,
       chartOptions: {
         title: {
@@ -119,21 +128,22 @@ export default {
       },
       datas: [],
       baseColors: [
-        { color: "rgb(255, 99, 132)" },
-        { color: "rgb(255, 159, 64)" },
-        { color: "rgb(255, 205, 86)" },
-        { color: "rgb(75, 192, 192)" },
-        { color: "rgb(54, 162, 235)" },
-        { color: "rgb(153, 102, 255)" },
-        { color: "rgb(201, 203, 207)" }
+        "rgb(255, 99, 132)" ,
+        "rgb(255, 159, 64)" ,
+        "rgb(255, 205, 86)" ,
+        "rgb(75, 192, 192)" ,
+        "rgb(54, 162, 235)" ,
+        "rgb(153, 102, 255)" ,
+        "rgb(201, 203, 207)"
       ],
       graphColors: [],
       labels: [],
       schedules: [
         {
+          colorNo: 0,
           fromTime: 0,
           toTime: 1,
-          plan: ""
+          plan: "",
         }
       ],
       timeOptions: () => {
@@ -196,44 +206,52 @@ export default {
     onAddSchedule() {
       var fromTime = this.schedules.slice(-1)[0].toTime;
       this.schedules.push({
+        colorNo: this.schedules.length,
         fromTime: fromTime,
         toTime: fromTime + 1,
-        plan: ""
+        plan: "",
       });
     },
     SetSample() {
       this.schedules = [
         {
+          colorNo: 0,
           fromTime: 0,
           toTime: 7,
           plan: "寝る"
         },
         {
+          colorNo: 1,
           fromTime: 7,
           toTime: 8,
           plan: "準備＆通勤"
         },
         {
+          colorNo: 2,
           fromTime: 8,
           toTime: 17,
           plan: "仕事"
         },
         {
+          colorNo: 3,
           fromTime: 17,
           toTime: 18,
           plan: "退勤"
         },
         {
+          colorNo: 4,
           fromTime: 18,
           toTime: 20,
           plan: "夜ご飯＆風呂"
         },
         {
+          colorNo: 5,
           fromTime: 20,
           toTime: 22,
           plan: "副業"
         },
         {
+          colorNo: 6,
           fromTime: 22,
           toTime: 24,
           plan: "自由"
@@ -247,6 +265,10 @@ export default {
       link.href = canvas.toDataURL("image/png");
       link.download = "time_schedule.png";
       link.click();
+    },
+    onChangeColor(index) {
+      this.schedules[index].colorNo = 
+      (this.schedules[index].colorNo + 1 )%this.baseColors.length
     }
   }
 };
@@ -256,5 +278,10 @@ export default {
 .small {
   max-width: 600px;
   margin: 150px auto;
+}
+#colorBox{
+  margin-top: 7px;
+  width: 20px;
+  height: 25px;
 }
 </style>
