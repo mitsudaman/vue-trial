@@ -5,17 +5,17 @@
         <b-row>
           <b-col lg="7">
             <div>
-              <!-- <pie-chart 
+              <pie-chart 
                 :chart-data="datacollection" 
                 :options="chartOptions">
-              </pie-chart> -->
+              </pie-chart>
               <b-button 
               id="download"
               @click="onDownload()">download</b-button>
             </div>
           </b-col>
           <b-col lg="5">
-            <b-row class="mt-5 no-gutters">
+            <b-row class="mt-5">
               <b-col cols="1"></b-col>
               <b-col cols="3">
                 <label>From</label>
@@ -30,7 +30,7 @@
             <b-row 
             v-for="(schedule,index) in schedules" 
             v-bind:key="schedule.id"
-            class="no-gutters">
+            class="">
               <b-col cols="1" >
                 <b-button 
                 v-bind:style="{ backgroundColor: baseColors[schedule.colorNo] }"
@@ -53,7 +53,12 @@
               </b-col>
             </b-row>
             <b-row>
-              <b-col cols="9"></b-col>
+              <b-col cols="6"></b-col>
+              <b-col cols="3">
+                <b-button 
+                class="btn-block delete-btn" 
+                @click="onDeleteSchedule()">削除</b-button>
+              </b-col>
               <b-col cols="3">
                 <b-button class="btn-block" variant="primary" @click="onAddSchedule()">追加</b-button>
               </b-col>
@@ -63,7 +68,7 @@
         <b-row class="mt-4">
           <b-col lg="8" cols="12"></b-col>
           <b-col lg="2" cols="6">
-            <b-button variant="primary" class="btn-block mt-3" @click="SetSample()">test</b-button>
+            <b-button variant="primary" class="btn-block mt-3" @click="onSetSample()">test</b-button>
           </b-col>
           <b-col lg="2" cols="6">
             <b-button variant="primary" class="btn-block mt-3" @click="fillData()">Set</b-button>
@@ -127,14 +132,28 @@ export default {
         }
       },
       datas: [],
+      //origin
+      // baseColors: [
+      //   "rgb(255, 99, 132)" ,
+      //   "rgb(255, 159, 64)" ,
+      //   "rgb(255, 205, 86)" ,
+      //   "rgb(75, 192, 192)" ,
+      //   "rgb(54, 162, 235)" ,
+      //   "rgb(153, 102, 255)" ,
+      //   "rgb(201, 203, 207)"
+      // ],
+      //https://flatuicolors.com/palette/us
       baseColors: [
-        "rgb(255, 99, 132)" ,
-        "rgb(255, 159, 64)" ,
-        "rgb(255, 205, 86)" ,
-        "rgb(75, 192, 192)" ,
-        "rgb(54, 162, 235)" ,
-        "rgb(153, 102, 255)" ,
-        "rgb(201, 203, 207)"
+        "#ff7675",
+        "#fd79a8" ,
+        "#fdcb6e" ,
+        "#ffeaa7" ,
+        "#00b894" ,
+        "#55efc4" ,
+        "#0984e3" ,
+        "#74b9ff",
+        "#a29bfe" ,
+        "#b2bec3" ,
       ],
       graphColors: [],
       labels: [],
@@ -178,7 +197,7 @@ export default {
       //スケジュール分 時刻・カラー・ラベルを設定する
       for (var i = 0; i < this.schedules.length; i++) {
         this.datas.push(this.schedules[i].toTime - this.schedules[i].fromTime);
-        var addColor = this.baseColors[i % this.baseColors.length].color;
+        var addColor = this.baseColors[this.schedules[i].colorNo];
         this.graphColors.push(addColor);
         var addLabel = this.schedules[i].plan;
         this.labels.push(addLabel);
@@ -188,7 +207,7 @@ export default {
         this.datas.push(24 - this.schedules.slice(-1)[0].toTime);
         var addColor = this.baseColors[
           (this.schedules.length + 1) % this.baseColors.length
-        ].color;
+        ];
         this.graphColors.push(addColor);
         this.labels.push("その他");
       }
@@ -212,7 +231,12 @@ export default {
         plan: "",
       });
     },
-    SetSample() {
+    onDeleteSchedule() {
+      if(this.schedules.length > 1 ){
+        this.schedules.splice(this.schedules.length -1, 1)
+      }
+    },
+    onSetSample() {
       this.schedules = [
         {
           colorNo: 0,
@@ -229,29 +253,41 @@ export default {
         {
           colorNo: 2,
           fromTime: 8,
-          toTime: 17,
+          toTime: 12,
           plan: "仕事"
         },
         {
           colorNo: 3,
+          fromTime: 12,
+          toTime: 13,
+          plan: "お昼"
+        },
+        {
+          colorNo: 4,
+          fromTime: 13,
+          toTime: 17,
+          plan: "仕事"
+        },
+        {
+          colorNo: 5,
           fromTime: 17,
           toTime: 18,
           plan: "退勤"
         },
         {
-          colorNo: 4,
+          colorNo: 6,
           fromTime: 18,
           toTime: 20,
           plan: "夜ご飯＆風呂"
         },
         {
-          colorNo: 5,
+          colorNo: 7,
           fromTime: 20,
           toTime: 22,
           plan: "副業"
         },
         {
-          colorNo: 6,
+          colorNo: 8,
           fromTime: 22,
           toTime: 24,
           plan: "自由"
@@ -283,5 +319,15 @@ export default {
   margin-top: 7px;
   width: 20px;
   height: 25px;
+}
+.delete-btn{
+  background-color: white;
+  color: red;
+  border: solid 1px red;
+}
+.delete-btn:hover{
+  background-color: #f86c6b;
+  color: white;
+  border: solid 1px red;
 }
 </style>
