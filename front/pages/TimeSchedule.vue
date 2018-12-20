@@ -1,8 +1,8 @@
 <template>
   <div>
-    <b-container class="mt-5">
-      <div class="card p-1">
-        <b-row>
+    <b-container class="mt-5 pr-0 pr-lg-5 pl-0 pl-lg-5">
+      <div class="card ml-1 pl-1">
+        <b-row class="no-gutters">
           <b-col lg="7">
             <div>
               <pie-chart 
@@ -14,33 +14,33 @@
               @click="onDownload()">download</b-button>
             </div>
           </b-col>
-          <b-col lg="5">
-            <b-row class="mt-5">
+          <b-col lg="5" class="mt-3">
+            <b-row class="mt-5 no-gutters">
               <b-col cols="1"></b-col>
-              <b-col cols="3">
+              <b-col cols="2" class="text-center">
                 <label>From</label>
               </b-col>
-              <b-col cols="3">
+              <b-col cols="3" class="pl-2 pr-2">
                 <label>To</label>
               </b-col>
-              <b-col cols="5">
+              <b-col cols="6">
                 <label>スケジュール</label>
               </b-col>
             </b-row>
             <b-row 
             v-for="(schedule,index) in schedules" 
             v-bind:key="schedule.id"
-            class="">
+            class="no-gutters">
               <b-col cols="1" >
                 <b-button 
                 v-bind:style="{ backgroundColor: baseColors[schedule.colorNo] }"
                 id="colorBox"
                 @click="onChangeColor(index)" ></b-button>
               </b-col>
-              <b-col cols="3" class="">
-                <p class="form-control">{{schedule.fromTime}}</p>
+              <b-col cols="2" class="">
+                <p class="text-center pt-2">{{schedule.fromTime}} 〜</p>
               </b-col>
-              <b-col cols="3">
+              <b-col cols="3" class="pl-2 pr-2">
                 <b-form-select
                   v-model="schedule.toTime"
                   :options="timeOptions()"
@@ -48,7 +48,7 @@
                   @input="selectToTime()"
                 ></b-form-select>
               </b-col>
-              <b-col cols="5">
+              <b-col cols="6" class="pl-2 pr-2">
                 <b-form-input v-model="schedule.plan"></b-form-input>
               </b-col>
             </b-row>
@@ -59,7 +59,7 @@
                 class="btn-block delete-btn" 
                 @click="onDeleteSchedule()">削除</b-button>
               </b-col>
-              <b-col cols="3">
+              <b-col cols="3" class="pl-0 pr-4">
                 <b-button class="btn-block" variant="primary" @click="onAddSchedule()">追加</b-button>
               </b-col>
             </b-row>
@@ -123,7 +123,24 @@ export default {
               position: "outside"
             },
             {
-              render: "label",
+              render: function(args) {
+                console.log(args)
+                // var time;
+                // if (args.index == 0) {
+                //   time = "0 ~ " + args.value;
+                // }else {
+                //   var from = 0;
+                //   var to = 0;
+                //   for (var i = 0; i < args.index; i++) {
+                //     if (i != args.dataset.data.length - 1) {
+                //       from += args.dataset.data[i];
+                //       to = from + args.value;
+                //     }
+                //   }
+                //   time = from + "~" + to;
+                // }
+                return "time";
+              },
               fontSize: 14,
               fontStyle: "bold",
               fontColor: "#000"
@@ -187,7 +204,7 @@ export default {
             backgroundColor: this.graphColors
           }
         ],
-        labels: this.labels
+        // labels: this.labels
       };
     },
     setChartParam() {

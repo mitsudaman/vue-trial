@@ -1,12 +1,6 @@
 <template>
   <div>
     <b-container class="mt-5">
-      <canvas 
-      id="canvas" 
-      width=240 
-      height=240
-      ref="canvas" 
-      style="background-color:#808080;"></canvas>
       <b-button 
       id="download"
       @click="download()">download</b-button>

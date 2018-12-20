@@ -3,6 +3,7 @@ docker-compose build
 docker-compose up -d
 docker-compose exec nuxt sh
 
+docker-compose run nuxt sh
 
 /trial vue init nuxt-community/starter-template front
 
@@ -174,7 +175,8 @@ https://www.seleqt.net/design/how-button-color-contrast-guides-users-to-action/
 * チェック処理(9以上は崩れるのでNG、toをfromが越えるとダメとか)
 →NOを表示しない方向で対応
 
-
+* スマホ版ダウンロードできない件
+* スマホ版二重に記載されてしまう件
 
 * デザイン調整（レスポンシブ）
  
