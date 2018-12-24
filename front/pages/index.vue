@@ -1,7 +1,9 @@
 <template>
   <section class="container">
     <b-nav vertical>
-      <b-nav-item href="./Test" active>Test</b-nav-item>
+      <b-nav-item 
+        href="./Test" 
+        active>Test</b-nav-item>
       <b-nav-item href="./map" >Map</b-nav-item>
       <b-nav-item href="./TimeSchedule" >TimeSchedule</b-nav-item>
       <b-nav-item disabled>Disabled</b-nav-item>

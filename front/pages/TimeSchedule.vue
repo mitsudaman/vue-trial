@@ -3,7 +3,7 @@
     <header class="mt-3">
       <b-container class="pl-lg-5 pl-3">
         <div class="h1 p-2">
-          <i class="far fa-clock"></i> 時間割メーカー
+          <i class="far fa-clock"/> 時間割メーカー
         </div>
       </b-container>
     </header>
@@ -13,26 +13,39 @@
           <b-col lg="7">
             <b-row>
               <b-col cols="12">
-                <pie-chart :chart-data="datacollection" :options="chartOptions"></pie-chart>
+                <pie-chart 
+                  :chart-data="datacollection" 
+                  :options="chartOptions"/>
               </b-col>
             </b-row>
             <b-row>
-              <b-col cols="6"></b-col>
-              <b-col cols="5" class="pr-lg-5">
-                <b-button id="download" class="btn-block" @click="onDownload()">
-                  <i class="fas fa-download"></i>
+              <b-col cols="6"/>
+              <b-col 
+                cols="5" 
+                class="pr-lg-5">
+                <b-button 
+                  id="download" 
+                  class="btn-block" 
+                  @click="onDownload()">
+                  <i class="fas fa-download"/>
                   <span class="pl-2">Download</span>
                 </b-button>
               </b-col>
             </b-row>
           </b-col>
-          <b-col lg="5" class>
+          <b-col 
+            lg="5" 
+            class>
             <b-row class="mt-5 mt-md-3 no-gutters">
-              <b-col cols="1"></b-col>
-              <b-col cols="2" class="text-center">
+              <b-col cols="1"/>
+              <b-col 
+                cols="2" 
+                class="text-center">
                 <label>From</label>
               </b-col>
-              <b-col cols="3" class="pl-2 pr-2">
+              <b-col 
+                cols="3" 
+                class="pl-2 pr-2">
                 <label>To</label>
               </b-col>
               <b-col cols="6">
@@ -41,49 +54,76 @@
             </b-row>
             <b-row
               v-for="(schedule,index) in schedules"
-              v-bind:key="schedule.id"
+              :key="schedule.id"
               class="no-gutters"
             >
               <b-col cols="1">
                 <b-button
-                  v-bind:style="{ backgroundColor: baseColors[schedule.colorNo] }"
+                  :style="{ backgroundColor: baseColors[schedule.colorNo] }"
                   id="colorBox"
                   @click="onChangeColor(index)"
-                ></b-button>
+                />
               </b-col>
-              <b-col cols="2" class>
-                <p class="text-center pt-2 pl-2">{{schedule.fromTime}} 〜</p>
+              <b-col 
+                cols="2" 
+                class>
+                <p class="text-center pt-2 pl-2">{{ schedule.fromTime }} 〜</p>
               </b-col>
-              <b-col cols="3" class="pl-2 pr-2">
+              <b-col 
+                cols="3" 
+                class="pl-2 pr-2">
                 <b-form-select
                   v-model="schedule.toTime"
                   :options="timeOptions()"
                   class="mb-3"
                   @input="selectToTime()"
-                ></b-form-select>
+                />
               </b-col>
-              <b-col cols="6" class="pl-2 pr-2">
-                <input class="form-control" v-model="schedule.plan">
+              <b-col 
+                cols="6" 
+                class="pl-2 pr-2">
+                <input 
+                  class="form-control" 
+                  v-model="schedule.plan">
               </b-col>
             </b-row>
             <b-row>
-              <b-col cols="6"></b-col>
+              <b-col cols="6"/>
               <b-col cols="3">
-                <b-button class="btn-block delete-btn" @click="onDeleteSchedule()">削除</b-button>
+                <b-button 
+                  class="btn-block delete-btn" 
+                  @click="onDeleteSchedule()">削除</b-button>
               </b-col>
-              <b-col cols="3" class="pl-0 pr-4">
-                <b-button class="btn-block" variant="primary" @click="onAddSchedule()">追加</b-button>
+              <b-col 
+                cols="3" 
+                class="pl-0 pr-4">
+                <b-button 
+                  class="btn-block" 
+                  variant="primary" 
+                  @click="onAddSchedule()">追加</b-button>
               </b-col>
             </b-row>
           </b-col>
         </b-row>
         <b-row class="mt-2 mb-2 pr-2">
-          <b-col lg="8" cols="12"></b-col>
-          <b-col lg="2" cols="6">
-            <b-button variant="primary" class="btn-block" @click="onSetSample()">サンプル</b-button>
+          <b-col 
+            lg="8" 
+            cols="12"/>
+          <b-col 
+            lg="2" 
+            cols="6">
+            <b-button 
+              variant="primary" 
+              class="btn-block" 
+              @click="onSetSample()">サンプル</b-button>
           </b-col>
-          <b-col lg="2" cols="6">
-            <b-button variant="primary" class="btn-block" @click="fillData()">セット</b-button>
+          <b-col 
+            lg="2" 
+            cols="6">
+            <b-button 
+              variant="primary" 
+              class="btn-block" 
+              @click="fillData()">セット</b-button>
           </b-col>
         </b-row>
       </div>
@@ -97,7 +137,10 @@
           class="twitter-share-button"
           data-show-count="false"
         >Tweet</a>
-        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <script 
+          async 
+          src="https://platform.twitter.com/widgets.js" 
+          charset="utf-8"/>
         <a
           href="http://b.hatena.ne.jp/entry/s/mitsudaman.github.io/vue-trial/TimeSchedule/"
           class="hatena-bookmark-button"
@@ -119,17 +162,19 @@
           src="https://b.st-hatena.com/js/bookmark_button.js"
           charset="utf-8"
           async="async"
-        ></script>
+        />
       </div>
       <div>
         開発・運営
         <img 
-        src="~/assets/img/mitsudama.png" 
-        width="30"
-        height="30"
-        class="pb-1 border-4"
-        alt="mitsudama">
-        <a href="https://twitter.com/mitudama" target="_blank">@mitudama</a> Copyright ©2018 All rights reserved.
+          src="~/assets/img/mitsudama.png" 
+          width="30"
+          height="30"
+          class="pb-1 border-4"
+          alt="mitsudama">
+        <a 
+          href="https://twitter.com/mitudama" 
+          target="_blank">@mitudama</a> Copyright ©2018 All rights reserved.
       </div>
     </footer>
   </div>
@@ -233,7 +278,6 @@ export default {
         }
         return times;
       },
-      test: ""
     };
   },
   mounted() {
@@ -359,12 +403,6 @@ export default {
         {
           colorNo: 7,
           fromTime: 20,
-          toTime: 22,
-          plan: "副業"
-        },
-        {
-          colorNo: 8,
-          fromTime: 22,
           toTime: 24,
           plan: "自由"
         }
@@ -402,20 +440,8 @@ export default {
   color: white;
   border: solid 1px red;
 }
-.btn-social {
-  color: white;
-}
-.btn-tw {
-  background-color: #00aced;
-}
-
 header {
   background-color: silver;
   color: white;
-}
-@include media-breakpoint-up(sm) {
-  .h1 {
-    font-size: 1.2rem;
-  }
 }
 </style>

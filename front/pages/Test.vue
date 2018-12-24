@@ -2,8 +2,8 @@
   <div>
     <b-container class="mt-5">
       <b-button 
-      id="download"
-      @click="download()">download</b-button>
+        id="download"
+        @click="download()">download</b-button>
     </b-container>
   </div>
 </template>

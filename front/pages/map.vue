@@ -2,14 +2,36 @@
   <section class="container">
     <div>
       <div class="map">
-        <div v-for="i in 8" class="container" :key="i">
-          <div v-for="j in 9" class="waku" :key="j">
-            <div :class="{ 'object-human': xy[i][j]==1, 'visitor': xy[i][j]==0 }" @click="visitorMove(i, j)">
-              <img class="visitor" v-if="xy[i][j]==0" src="../assets/img/brave.png"/>
-              <img class="object-treasure" v-if="xy[i][j]==4" src="../assets/img/object-treasure-1.png"/>
-              <img class="object-treasure" v-if="xy[i][j]==5" src="../assets/img/object-treasure-2.png"/>
-              <img class="object-human" v-if="xy[i][j]==1" src="../assets/img/mitsudama.png"/>
-              <div class="object-wall" v-if="xy[i][j]==9"></div>
+        <div 
+          v-for="i in 8" 
+          class="container" 
+          :key="i">
+          <div 
+            v-for="j in 9" 
+            class="waku" 
+            :key="j">
+            <div 
+              :class="{ 'object-human': xy[i][j]==1, 'visitor': xy[i][j]==0 }" 
+              @click="visitorMove(i, j)">
+              <img 
+                class="visitor" 
+                v-if="xy[i][j]==0" 
+                src="../assets/img/brave.png">
+              <img 
+                class="object-treasure" 
+                v-if="xy[i][j]==4" 
+                src="../assets/img/object-treasure-1.png">
+              <img 
+                class="object-treasure" 
+                v-if="xy[i][j]==5" 
+                src="../assets/img/object-treasure-2.png">
+              <img 
+                class="object-human" 
+                v-if="xy[i][j]==1" 
+                src="../assets/img/mitsudama.png">
+              <div 
+                class="object-wall" 
+                v-if="xy[i][j]==9"/>
             </div>
           </div>
         </div>
