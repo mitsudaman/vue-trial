@@ -1,21 +1,33 @@
 <template>
   <div>
-    <b-container class="mt-5 pr-0 pr-lg-5 pl-0 pl-lg-5">
+    <header class="mt-3">
+      <b-container class="pl-lg-5 pl-3">
+        <div class="h1 p-2">
+          <i class="far fa-clock"></i> 時間割メーカー
+        </div>
+      </b-container>
+    </header>
+    <b-container class="mt-4 pr-0 pr-lg-5 pl-0 pl-lg-5">
       <div class="card ml-1 pl-1">
         <b-row class="no-gutters">
           <b-col lg="7">
-            <div>
-              <pie-chart 
-                :chart-data="datacollection" 
-                :options="chartOptions">
-              </pie-chart>
-              <b-button 
-              id="download"
-              @click="onDownload()">download</b-button>
-            </div>
+            <b-row>
+              <b-col cols="12">
+                <pie-chart :chart-data="datacollection" :options="chartOptions"></pie-chart>
+              </b-col>
+            </b-row>
+            <b-row>
+              <b-col cols="6"></b-col>
+              <b-col cols="5" class="pr-lg-5">
+                <b-button id="download" class="btn-block" @click="onDownload()">
+                  <i class="fas fa-download"></i>
+                  <span class="pl-2">Download</span>
+                </b-button>
+              </b-col>
+            </b-row>
           </b-col>
-          <b-col lg="5" class="mt-3">
-            <b-row class="mt-5 no-gutters">
+          <b-col lg="5" class>
+            <b-row class="mt-5 mt-md-3 no-gutters">
               <b-col cols="1"></b-col>
               <b-col cols="2" class="text-center">
                 <label>From</label>
@@ -27,18 +39,20 @@
                 <label>スケジュール</label>
               </b-col>
             </b-row>
-            <b-row 
-            v-for="(schedule,index) in schedules" 
-            v-bind:key="schedule.id"
-            class="no-gutters">
-              <b-col cols="1" >
-                <b-button 
-                v-bind:style="{ backgroundColor: baseColors[schedule.colorNo] }"
-                id="colorBox"
-                @click="onChangeColor(index)" ></b-button>
+            <b-row
+              v-for="(schedule,index) in schedules"
+              v-bind:key="schedule.id"
+              class="no-gutters"
+            >
+              <b-col cols="1">
+                <b-button
+                  v-bind:style="{ backgroundColor: baseColors[schedule.colorNo] }"
+                  id="colorBox"
+                  @click="onChangeColor(index)"
+                ></b-button>
               </b-col>
-              <b-col cols="2" class="">
-                <p class="text-center pt-2">{{schedule.fromTime}} 〜</p>
+              <b-col cols="2" class>
+                <p class="text-center pt-2 pl-2">{{schedule.fromTime}} 〜</p>
               </b-col>
               <b-col cols="3" class="pl-2 pr-2">
                 <b-form-select
@@ -49,15 +63,13 @@
                 ></b-form-select>
               </b-col>
               <b-col cols="6" class="pl-2 pr-2">
-                <b-form-input v-model="schedule.plan"></b-form-input>
+                <input class="form-control" v-model="schedule.plan">
               </b-col>
             </b-row>
             <b-row>
               <b-col cols="6"></b-col>
               <b-col cols="3">
-                <b-button 
-                class="btn-block delete-btn" 
-                @click="onDeleteSchedule()">削除</b-button>
+                <b-button class="btn-block delete-btn" @click="onDeleteSchedule()">削除</b-button>
               </b-col>
               <b-col cols="3" class="pl-0 pr-4">
                 <b-button class="btn-block" variant="primary" @click="onAddSchedule()">追加</b-button>
@@ -65,17 +77,61 @@
             </b-row>
           </b-col>
         </b-row>
-        <b-row class="mt-4">
+        <b-row class="mt-2 mb-2 pr-2">
           <b-col lg="8" cols="12"></b-col>
           <b-col lg="2" cols="6">
-            <b-button variant="primary" class="btn-block mt-3" @click="onSetSample()">test</b-button>
+            <b-button variant="primary" class="btn-block" @click="onSetSample()">サンプル</b-button>
           </b-col>
           <b-col lg="2" cols="6">
-            <b-button variant="primary" class="btn-block mt-3" @click="fillData()">Set</b-button>
+            <b-button variant="primary" class="btn-block" @click="fillData()">セット</b-button>
           </b-col>
         </b-row>
       </div>
     </b-container>
+    <footer class="text-center mt-5 px-5">
+      <div class="px-3">
+        <a
+          data-size="large"
+          href="https://twitter.com/share?text=時間割メーカー。簡単に1日のスケジュールを立てられるサービスです。朝に使うとより幸せになれます。&hashtags=Jikanwaly&url=https://mitsudaman.github.io/vue-trial/TimeSchedule/"
+          title="Twitter"
+          class="twitter-share-button"
+          data-show-count="false"
+        >Tweet</a>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <a
+          href="http://b.hatena.ne.jp/entry/s/mitsudaman.github.io/vue-trial/TimeSchedule/"
+          class="hatena-bookmark-button"
+          data-hatena-bookmark-layout="basic-label"
+          data-hatena-bookmark-lang="ja"
+          data-hatena-bookmark-height="28"
+          title="このエントリーをはてなブックマークに追加"
+        >
+          <img
+            src="https://b.st-hatena.com/images/entry-button/button-only@2x.png"
+            alt="このエントリーをはてなブックマークに追加"
+            width="20"
+            height="20"
+            style="border: none;"
+          >
+        </a>
+        <script
+          type="text/javascript"
+          src="https://b.st-hatena.com/js/bookmark_button.js"
+          charset="utf-8"
+          async="async"
+        ></script>
+      </div>
+      <div>
+        開発・運営
+        <img 
+        src="~/assets/img/mitsudama.png" 
+        width="30"
+        height="30"
+        class="pb-1 border-4"
+        alt="mitsudama">
+        <a href="https://twitter.com/mitudama" target="_blank">@mitudama</a> Copyright ©2018 All rights reserved.
+      </div>
+    </footer>
   </div>
 </template>
 
@@ -89,13 +145,21 @@ export default {
   },
   data() {
     return {
-      activeColor: 'black',
+      activeColor: "black",
       datacollection: null,
       chartOptions: {
-        title: {
-          display: true,
-          fontSize: 35,
-          text: "タイムスケジュール"
+        // title: {
+        //   display: true,
+        //   fontSize: 35,
+        //   text: "タイムスケジュール"
+        // },
+        layout: {
+          padding: {
+            left: 50,
+            right: 50,
+            top: 0,
+            bottom: 0
+          }
         },
         plugins: {
           labels: [
@@ -104,7 +168,7 @@ export default {
                 var time;
                 if (args.index == 0) {
                   time = "0 ~ " + args.value;
-                }else {
+                } else {
                   var from = 0;
                   var to = 0;
                   for (var i = 0; i < args.index; i++) {
@@ -121,25 +185,15 @@ export default {
               fontStyle: "bold",
               fontColor: "#000",
               position: "outside"
+              // arc: true,
             },
             {
-              render: function(args) {
-                console.log(args)
-                // var time;
-                // if (args.index == 0) {
-                //   time = "0 ~ " + args.value;
-                // }else {
-                //   var from = 0;
-                //   var to = 0;
-                //   for (var i = 0; i < args.index; i++) {
-                //     if (i != args.dataset.data.length - 1) {
-                //       from += args.dataset.data[i];
-                //       to = from + args.value;
-                //     }
-                //   }
-                //   time = from + "~" + to;
-                // }
-                return "time";
+              render: function(data) {
+                if (data.dataset.param[data.index]) {
+                  return data.dataset.param[data.index].plan;
+                } else {
+                  return "その他";
+                }
               },
               fontSize: 14,
               fontStyle: "bold",
@@ -149,28 +203,18 @@ export default {
         }
       },
       datas: [],
-      //origin
-      // baseColors: [
-      //   "rgb(255, 99, 132)" ,
-      //   "rgb(255, 159, 64)" ,
-      //   "rgb(255, 205, 86)" ,
-      //   "rgb(75, 192, 192)" ,
-      //   "rgb(54, 162, 235)" ,
-      //   "rgb(153, 102, 255)" ,
-      //   "rgb(201, 203, 207)"
-      // ],
       //Amerivan PaletteAmerivan Palette
       baseColors: [
         "#ff7675",
-        "#fd79a8" ,
-        "#fdcb6e" ,
-        "#ffeaa7" ,
-        "#00b894" ,
-        "#55efc4" ,
-        "#0984e3" ,
+        "#fd79a8",
+        "#fdcb6e",
+        "#ffeaa7",
+        "#00b894",
+        "#55efc4",
+        "#0984e3",
         "#74b9ff",
-        "#a29bfe" ,
-        "#b2bec3" ,
+        "#a29bfe",
+        "#b2bec3"
       ],
       graphColors: [],
       labels: [],
@@ -179,7 +223,7 @@ export default {
           colorNo: 0,
           fromTime: 0,
           toTime: 1,
-          plan: "",
+          plan: ""
         }
       ],
       timeOptions: () => {
@@ -188,7 +232,8 @@ export default {
           times.push({ value: i, text: i });
         }
         return times;
-      }
+      },
+      test: ""
     };
   },
   mounted() {
@@ -196,29 +241,44 @@ export default {
   },
   methods: {
     fillData() {
+      Chart.plugins.register({
+        beforeDraw: function(chartInstance) {
+          var ctx = chartInstance.chart.ctx;
+          ctx.fillStyle = "white";
+          ctx.fillRect(
+            0,
+            0,
+            chartInstance.chart.width,
+            chartInstance.chart.height
+          );
+        }
+      });
       this.setChartParam();
       this.datacollection = {
         datasets: [
           {
             data: this.datas,
-            backgroundColor: this.graphColors
+            backgroundColor: this.graphColors,
+            param: this.schedules
           }
-        ],
+        ]
         // labels: this.labels
       };
+      window.scrollTo(0, 0);
     },
     setChartParam() {
       this.datas = [];
       this.graphColors = [];
       this.labels = [];
+
       //スケジュール分 時刻・カラー・ラベルを設定する
       for (var i = 0; i < this.schedules.length; i++) {
         this.datas.push(this.schedules[i].toTime - this.schedules[i].fromTime);
         var addColor = this.baseColors[this.schedules[i].colorNo];
         this.graphColors.push(addColor);
         var addLabel = this.schedules[i].plan;
-        this.labels.push(addLabel);
       }
+
       //最後のtoTimeが24以下の場合埋め合わせ用の時間を入れる
       if (this.schedules.slice(-1)[0].toTime < 24) {
         this.datas.push(24 - this.schedules.slice(-1)[0].toTime);
@@ -226,7 +286,6 @@ export default {
           (this.schedules.length + 1) % this.baseColors.length
         ];
         this.graphColors.push(addColor);
-        this.labels.push("その他");
       }
     },
     selectToTime() {
@@ -245,12 +304,12 @@ export default {
         colorNo: this.schedules.length,
         fromTime: fromTime,
         toTime: fromTime + 1,
-        plan: "",
+        plan: ""
       });
     },
     onDeleteSchedule() {
-      if(this.schedules.length > 1 ){
-        this.schedules.splice(this.schedules.length -1, 1)
+      if (this.schedules.length > 1) {
+        this.schedules.splice(this.schedules.length - 1, 1);
       }
     },
     onSetSample() {
@@ -320,31 +379,43 @@ export default {
       link.click();
     },
     onChangeColor(index) {
-      this.schedules[index].colorNo = 
-      (this.schedules[index].colorNo + 1 )%this.baseColors.length
+      this.schedules[index].colorNo =
+        (this.schedules[index].colorNo + 1) % this.baseColors.length;
     }
   }
 };
 </script>
 
 <style>
-.small {
-  max-width: 600px;
-  margin: 150px auto;
-}
-#colorBox{
+#colorBox {
   margin-top: 7px;
   width: 20px;
   height: 25px;
 }
-.delete-btn{
+.delete-btn {
   background-color: white;
   color: red;
   border: solid 1px red;
 }
-.delete-btn:hover{
+.delete-btn:hover {
   background-color: #f86c6b;
   color: white;
   border: solid 1px red;
+}
+.btn-social {
+  color: white;
+}
+.btn-tw {
+  background-color: #00aced;
+}
+
+header {
+  background-color: silver;
+  color: white;
+}
+@include media-breakpoint-up(sm) {
+  .h1 {
+    font-size: 1.2rem;
+  }
 }
 </style>

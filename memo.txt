@@ -175,12 +175,85 @@ https://www.seleqt.net/design/how-button-color-contrast-guides-users-to-action/
 * チェック処理(9以上は崩れるのでNG、toをfromが越えるとダメとか)
 →NOを表示しない方向で対応
 
-* スマホ版ダウンロードできない件
-* スマホ版二重に記載されてしまう件
-
 * デザイン調整（レスポンシブ）
+→ no-gutters を使用　細かい調整すみ
+
+*ラベルをタイトル部分は削除してグラフ中に表示
+* スマホ版二重に記載されてしまう件
+→safariだとb-form-inputがうまく動かないためinputタグで回避
+
+*スマホ版ダウンロードできない件
+→ios safariでは仕様。
+
+*グラフの背景色が透過されてしまい真っ黒になる
+→git hubのコードパクリで対応
+
+▼Canvas background color
+https://github.com/chartjs/Chart.js/issues/2830
  
 
+* favicon設定
+
+▼ファビコンを設定してみた。10分ほどで出来て超カンタン。
+https://sayakablog.com/blog/favicon/
+
+▼ファビコン favicon.icoを作ろう!
+https://ao-system.net/favicon/
+
+
 * ツイート機能
+▼公式
+https://fontawesome.com/how-to-use/on-the-web/setup/using-package-managers
+
+▼FontAwesomeをNuxt.jsで使う (npm経由)
+https://yinm.info/20181008/
+
+▼今の時代必ず知っておくべき！！Twitterツイートボタンの設置・実装方法まとめ
+http://blog.yuhiisk.com/archive/2015/10/12/twitter-share.html
+
+
+* タグ作成
+→名前だけ決めてあげれば無問題
+
+* ボタン部分の広がりCSS
+→ btn-blockで対応
+
+* 画像でかすぎ問題
+* ソースコード汚い問題
+
+* ヘッダー作成
+* はてブ
+
+*左外側のラベルが消えてしまう問題
+→タイトルを設定すれば回避できることに気づいた
+→そもそもpaddingも設定できることが判明
+
+*ヘッダー部分
+ - h1にしたい
+ - 銀色にしたい
+
+* lint 対応
+→制約がゆるいので
+essential → strongly-recommended
+に変更
+壊れるのが怖いので後ほどeslint用のコミットを別に作成
+
+▼Available rules
+https://vuejs.github.io/eslint-plugin-vue/rules/
+
+
 * OGP画像を登録（今回は不変で）
+▼Facebook・TwitterのOGP設定方法まとめ
+https://ferret-plus.com/610
+
+
+
+<meta property="og:title" content="ページのタイトル" />
+<meta property="og:type" content="website　か　blog　か　article" />
+<meta property="og:description" content="ページの簡単な説明" />
+<meta property="og:url" content="ページのURL" />
+<meta property="og:site_name" content="サイトのタイトル" />
+<meta property="og:image" content="サムネイル画像のURL" />
+
+
 * google analytics設定

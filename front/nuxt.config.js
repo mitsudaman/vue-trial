@@ -17,8 +17,18 @@ module.exports = {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: 'Nuxt.js project' }
+      { hid: 'description', name: 'description', content: 'Nuxt.js project' },
+      { property: 'og:title', content: '時間割メーカー' },
+      { property: 'og:type', content: 'website' },
+      { property: 'og:description', content: '予定を立てて時間割を作ろう！' },
+      { property: 'og:url', content: 'https://mitsudaman.github.io/vue-trial/TimeSchedule/' },
+      { property: 'og:site_name', content: '時間割メーカー' },
+      { property: 'og:image', content: '~/assets/img/mitsudama.png' },
+      { property: 'og:title', content: 'TEST OGP TITLE' },
     ],
+    htmlAttrs: {
+      prefix: 'og: http://ogp.me/ns#'
+    },
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
@@ -45,6 +55,9 @@ module.exports = {
       }
     }
   },
+  css: [
+    '@fortawesome/fontawesome-free/css/all.css',
+  ],
   modules: [
     'bootstrap-vue/nuxt',
 
